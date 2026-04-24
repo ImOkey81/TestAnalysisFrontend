@@ -1,35 +1,40 @@
-# TestAnalysis_Frontend
+# Центр тестирования
 
-This template should help get you started developing with Vue 3 in Vite.
+Интерфейс для:
 
-## Recommended IDE Setup
+- генерации Gherkin по OpenAPI;
+- генерации тестового проекта по OpenAPI;
+- анализа скриншотов;
+- анализа видео;
+- анализа репозитория.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Запуск
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+Откройте `http://localhost:3000`.
 
-```sh
-npm run build
+## Адреса сервисов
+
+Адреса заданы явно в [lib/service-config.ts](/C:/Users/artem/OneDrive/Desktop/TestAnalysisFrontend/lib/service-config.ts:1).
+
+```ts
+export const SERVICE_URLS = {
+  swagger: 'http://localhost:8082',
+  photo: 'http://localhost:8001',
+  video: 'http://localhost:5000',
+  repoReview: 'http://localhost:8083',
+}
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+При необходимости измените их под свои сервисы.
 
-```sh
-npm run lint
-```
+## Как пользоваться
+
+- `Swagger`: укажите `repoUrl`, при необходимости `filePath`, затем сгенерируйте Gherkin или тестовый проект.
+- `Скриншоты`: загрузите изображение и получите Gherkin.
+- `Видео`: загрузите `.mp4` и получите Gherkin.
+- `Репозиторий`: укажите URL для `git clone` и получите сводку, тесты и ревью.
