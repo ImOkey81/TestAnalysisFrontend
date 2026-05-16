@@ -1,5 +1,6 @@
 import { ApiError } from '@/types/api'
 import { SERVICE_URLS, type ServiceKey } from '@/lib/service-config'
+import { authFetch } from '@/lib/auth-fetch'
 
 function getStatusMessage(status: number) {
   if (status === 415) {
@@ -49,7 +50,7 @@ async function parseError(response: Response): Promise<ApiError> {
 }
 
 async function fetchApi(service: ServiceKey, path: string, init?: RequestInit) {
-  const response = await fetch(buildUrl(service, path), init)
+  const response = await authFetch(buildUrl(service, path), init)
   if (!response.ok) throw await parseError(response)
   return response
 }
